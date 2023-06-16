@@ -37,7 +37,7 @@ resource "azurerm_mssql_server" "udacity" {
   location                     = data.azurerm_resource_group.udacity.location
   version                      = "12.0"
   administrator_login          = "mysqladmin"
-  administrator_login_password = "my-sql-admin-password"
+  administrator_login_password = "j8Xw!6Lz@Fq3#RdV9&Pc1"
   tags = {
     environment = "udacity"
   }
