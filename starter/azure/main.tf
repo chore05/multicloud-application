@@ -45,30 +45,30 @@ resource "azurerm_mssql_server" "udacity" {
 }
 
 resource "azurerm_service_plan" "udacity" {
-  name                = "udacity-nikita-app-service-plan"
+  name                = "udacity-michalchorev-app-service-plan"
   location            = data.azurerm_resource_group.udacity.location
   resource_group_name = data.azurerm_resource_group.udacity.name
   
   sku_name = "B2"
-  os_type  = "Linux"
+  os_type  = "Windows"
 
   tags = {
     environment = "udacity"
   }
 }
 
-resource "azurerm_linux_web_app" "udacity" {
-  name                = "udacity-nikita-azure-dotnet-app"
+resource "azurerm_windows_web_app" "udacity" {
+  name                = "udacity-michalchorev-azure-dotnet-app"
   location            = data.azurerm_resource_group.udacity.location
   resource_group_name = data.azurerm_resource_group.udacity.name
   service_plan_id     = azurerm_service_plan.udacity.id
-
+  
   site_config {
     always_on = true
-    linux_fx_version = "DOCKER|<docker image with .NET runtime>"
   }
-
+  
   app_settings = {
     "WEBSITE_RUN_FROM_PACKAGE" = "1"
+    "net_framework_version" = "v5.0"
   }
 }
